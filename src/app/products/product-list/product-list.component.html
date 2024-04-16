@@ -1,0 +1,30 @@
+@if(errorMessage()) {
+  <div>{{ errorMessage() }}!</div>
+}
+
+<p>{{errorMessage()}}</p>
+
+<h2>Products</h2>
+
+
+<!-- https://angular.io/api/core/for#description -->
+  @for(product of products2(); track product.id) {
+    <h3> 
+      <a  [title]="product.title + ' details'"  [routerLink]="['/products', product.id]">    {{ product.title }}  </a>
+    </h3>
+  
+    <p>{{ product.price | currency}}</p>
+
+    @if (product.description) {
+      <p>Description: {{ product.description }}</p>
+    }
+
+    <button type="button" (click)="share(product)">
+      Share
+    </button>
+
+    <app-product-alerts [product]="product" (notify)="onNotify()"/>
+
+  }@empty {
+      <p>No products found</p>
+    }

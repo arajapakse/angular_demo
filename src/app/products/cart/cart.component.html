@@ -1,0 +1,11 @@
+<h3>Cart</h3>
+
+
+@for(item of cartStore.items(); track item.product.id) 
+{
+
+    <div class="cart-item">
+    <span>{{ item.product.title }}</span>
+    <span>{{ item.product.price | currency }}</span>
+  </div>
+}
